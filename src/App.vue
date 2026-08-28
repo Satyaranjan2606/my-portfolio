@@ -53,6 +53,11 @@
             <i class="fa-solid fa-location-dot text-yellow-400"></i>
             <span>Bhubaneswar, India</span>
           </div>
+          <a href="https://satyaranjan2606.github.io/my-portfolio/" target="_blank"
+            class="flex items-center gap-2 hover:text-yellow-400">
+            <i class="fa-solid fa-globe text-yellow-400"></i>
+            <span>Portfolio</span>
+          </a>
         </div>
       </div>
     </header>
@@ -64,17 +69,11 @@
         <h2 class="text-4xl font-bold mb-8 border-l-4 border-yellow-500 pl-5">SUMMARY</h2>
         <div class="prose prose-invert max-w-none text-lg leading-relaxed text-zinc-300">
           <p>
-            Developed and deployed scalable Laravel web applications using MVC architecture, improving maintainability
-            and reducing deployment time by 20%.
-            Designed and implemented 10+ RESTful APIs and integrated 5+ payment gateways (PayPal, Stripe, Razorpay,
-            CCAvenue, Dodo Payments), supporting 50,000+ monthly transactions.
-            Implemented secure authentication, authorization, and RBAC across 3+ applications.
-            Optimized MySQL queries through indexing, query tuning, and Eloquent ORM best practices, reducing execution
-            time by 25%.
-            Improved backend performance by 30% via code refactoring, query optimization, and efficient Laravel Eloquent
-            usage.
-            Collaborated in Agile/Scrum teams for debugging, production support, and feature enhancements, achieving 15%
-            faster sprint completion.
+            Software Engineer with 3+ years building scalable Laravel + Vue web applications and AI-augmented
+            products. Designed 10+ RESTful APIs and integrated 5+ payment gateways (PayPal, Stripe, Razorpay,
+            CCAvenue, Dodo Payments) supporting 50,000+ monthly transactions. Recently focused on shipping
+            production AI features — Ollama/qwen2.5-powered search, lead enrichment pipelines, and resume
+            screening automation — on top of secure, RBAC-driven Laravel backends.
           </p>
         </div>
       </section>
@@ -93,15 +92,13 @@
               <time class="text-zinc-400">Mar 2023 – Present</time>
             </div>
           </div>
-          <div class="prose prose-invert max-w-none text-zinc-300">
-            <p>
-              Results-driven Software Engineer with 3+ years of experience in PHP and Laravel MVC development. Expert in
-              building scalable web applications, designing RESTful APIs, payment gateway integrations (Razorpay,
-              Stripe, PayPal, CCAvenue), and optimizing MySQL and Oracle databases. Skilled in backend architecture,
-              RBAC (Role-Based Access Control), secure authentication & authorization, and production performance
-              tuning. Proven track record delivering secure, high-performance solutions in Agile/Scrum environments.
-            </p>
-          </div>
+          <ul class="list-disc list-inside space-y-2 text-zinc-300">
+            <li>Designed and implemented 10+ RESTful APIs, integrating 5 payment gateways (PayPal, Stripe, Razorpay, CCAvenue, Dodo Payments) supporting 50,000+ monthly transactions</li>
+            <li>Optimized MySQL/Oracle queries via indexing and Eloquent ORM tuning, cutting execution time by 25%</li>
+            <li>Improved backend performance by 30% through code refactoring and query optimization</li>
+            <li>Implemented secure authentication, authorization, and RBAC across 3+ applications</li>
+            <li>Collaborated in Agile/Scrum teams on debugging, production support, and feature delivery — 15% faster sprint completion</li>
+          </ul>
         </div>
       </section>
 
@@ -110,14 +107,21 @@
         <h2 class="text-4xl font-bold mb-8 border-l-4 border-yellow-500 pl-5">PROJECTS</h2>
         <div class="grid md:grid-cols-2 gap-8">
           <div v-for="project in projects" :key="project.title"
-            class="bg-zinc-900/60 rounded-2xl p-7 border border-zinc-800 hover:border-yellow-500/50 transition-colors">
-            <h3 class="text-2xl font-semibold text-yellow-400 mb-3">
+            class="bg-zinc-900/60 rounded-2xl p-7 border border-zinc-800 hover:border-yellow-500/50 transition-colors flex flex-col">
+            <h3 class="text-2xl font-semibold text-yellow-400 mb-3 flex items-center gap-2 flex-wrap">
               {{ project.title }}
-              <a v-if="project.url" :href="project.url" target="_blank" class="text-yellow-300 hover:underline">
-                ({{ project.url }})
+              <a v-if="project.url" :href="project.url" target="_blank"
+                class="text-sm text-yellow-300/80 hover:text-yellow-300 hover:underline font-normal">
+                (visit)
               </a>
             </h3>
-            <p class="text-zinc-300 leading-relaxed">{{ project.description }}</p>
+            <p class="text-zinc-300 leading-relaxed mb-4">{{ project.description }}</p>
+            <div class="mt-auto flex flex-wrap gap-2">
+              <span v-for="tech in project.stack" :key="tech"
+                class="text-xs px-3 py-1 bg-zinc-800 rounded-full border border-zinc-700 text-zinc-300">
+                {{ tech }}
+              </span>
+            </div>
           </div>
         </div>
       </section>
@@ -138,11 +142,16 @@
       <!-- SKILLS -->
       <section id="skills">
         <h2 class="text-4xl font-bold mb-8 border-l-4 border-yellow-500 pl-5">SKILLS</h2>
-        <div class="flex flex-wrap gap-3">
-          <span v-for="skill in skills" :key="skill"
-            class="px-5 py-2.5 bg-zinc-800 rounded-full text-sm font-medium border border-zinc-700 hover:border-yellow-500/50 transition-colors">
-            {{ skill }}
-          </span>
+        <div class="space-y-6">
+          <div v-for="group in skillGroups" :key="group.label">
+            <h4 class="text-yellow-400 text-sm font-semibold uppercase tracking-wide mb-3">{{ group.label }}</h4>
+            <div class="flex flex-wrap gap-3">
+              <span v-for="skill in group.items" :key="skill"
+                class="px-5 py-2.5 bg-zinc-800 rounded-full text-sm font-medium border border-zinc-700 hover:border-yellow-500/50 transition-colors">
+                {{ skill }}
+              </span>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -177,10 +186,29 @@
 import { ref } from 'vue'
 
 const projects = ref([
-  { title: "CIMFR", description: "Dynamic report generation system for mining operations and personnel services, built using Laravel + MySQL.", url: 'https://cimfr.res.in/' },
-  { title: "Morsh Golf", description: "E-commerce web application with product management, order processing, and secure payment gateway integration (Razorpay + Stripe).", url: 'https://www.morshgolf.com/' },
-  { title: "Dry Fruits (Online Store)", description: "E-commerce platform with catalog management, secure payment processing, and admin dashboard, built using Laravel.", url: '' },
-  { title: "Delvein", description: "Corporate data platform with company search, director info retrieval, and optimized backend performance in Laravel + MySQL.", url: 'https://delvein.in/' }
+  {
+    title: "BizNow",
+    description: "AI-powered local business listing platform. AI-driven search surfaces relevant results and boosts paid-tier businesses to the top, built using Ollama with the qwen2.5 model for fast, lightweight search.",
+    url: '',
+    stack: ["Laravel", "Inertia.js", "Vue.js", "PostgreSQL", "Ollama / qwen2.5"]
+  },
+  {
+    title: "LeadzTree",
+    description: "B2B lead-gen platform (Apollo.io-style) with company/contact search across USA, Canada, and India using MCA records. Laravel frontend consumes API data; PHP backend APIs enrich every record through an AI pipeline for high data accuracy.",
+    url: '',
+    stack: ["Laravel", "PHP APIs", "AI Enrichment Pipeline"]
+  },
+  {
+    title: "AI Resume Screening App",
+    description: "Screens resumes against a job's requirements and shortlists candidates automatically. Once a resume is selected, interview timing can be set and the invite is emailed to the applicant automatically.",
+    url: '',
+    stack: ["Docker", "Python", "Ollama (qwen2.5:3b)"]
+  },
+  { title: "CIMFR", description: "Dynamic report generation system for mining operations and personnel services.", url: 'https://cimfr.res.in/', stack: ["Laravel", "MySQL"] },
+  { title: "The Samaja TMS", description: "Time management and reporting system built to streamline internal operations and workflow tracking.", url: '', stack: ["Laravel"] },
+  { title: "Morsh Golf", description: "E-commerce web application with product management, order processing, and secure payment gateway integration.", url: 'https://www.morshgolf.com/', stack: ["Laravel", "Razorpay", "Stripe"] },
+  { title: "Dry Fruits (Online Store)", description: "E-commerce platform with catalog management, secure payment processing, and an admin dashboard.", url: '', stack: ["Laravel"] },
+  { title: "Delvein", description: "Corporate data platform with company search, director info retrieval, and optimized backend performance.", url: 'https://delvein.in/', stack: ["Laravel", "MySQL"] },
 ])
 
 const education = ref([
@@ -188,11 +216,12 @@ const education = ref([
   { degree: "B.Sc. Chemistry (Honours)", institution: "Utkal University, Bhubaneswar", period: "2015 – 2018", details: "Graduated with Honours" }
 ])
 
-const skills = ref([
-  "Laravel Framework", "PHP", "RESTful APIs", "Vue.js", "JavaScript",
-  "MySQL", "Oracle (Design & Optimization)", "Eloquent ORM",
-  "Unit Testing", "Agile Methodology", "MVC Architecture", "OOP",
-  "RBAC", "Payment Gateways Integration"
+const skillGroups = ref([
+  { label: "Backend", items: ["Laravel Framework", "PHP", "RESTful APIs", "MVC Architecture", "OOP", "RBAC"] },
+  { label: "Frontend", items: ["Vue.js", "JavaScript", "Inertia.js"] },
+  { label: "Databases", items: ["MySQL", "PostgreSQL", "Oracle"] },
+  { label: "AI / Automation", items: ["RAG (Retrieval-Augmented Generation)", "LLM Integration", "Ollama", "Python", "Web Scraping"] },
+  { label: "Practices", items: ["Unit Testing", "Agile Methodology", "Payment Gateway Integration"] },
 ])
 
 const languages = ref(["English", "Hindi", "Odia"])
