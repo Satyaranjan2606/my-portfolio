@@ -37,7 +37,7 @@
           <div class="text-left">
             <h1 class="text-4xl md:text-5xl font-bold tracking-tight">SATYARANJAN MOHANTY</h1>
             <p class="text-xl text-yellow-400 font-medium">Software Engineer</p>
-            <p class="text-sm text-zinc-400 mt-1">3+ Years Experience · Laravel · PHP · REST APIs</p>
+            <p class="text-sm text-zinc-400 mt-1">3.6+ Years Experience · Laravel · PHP · REST APIs</p>
           </div>
         </div>
 
@@ -70,7 +70,7 @@
         <h2 class="text-4xl font-bold mb-8 border-l-4 border-yellow-500 pl-5">SUMMARY</h2>
         <div class="prose prose-invert max-w-none text-lg leading-relaxed text-zinc-300">
           <p>
-            Backend-focused Software Engineer with 3+ years of experience building scalable Laravel/PHP web
+            Backend-focused Software Engineer with 3.6+ years of experience building scalable Laravel/PHP web
             applications and high-throughput REST APIs. Experienced in integrating multiple payment gateways
             (Razorpay, Stripe, PayPal, CCAvenue, Dodo Payments) handling 50,000+ monthly transactions, and
             optimizing MySQL and Oracle queries to reduce execution time by 25%. Skilled in authentication,
